@@ -33,6 +33,10 @@ export interface IUser extends Document {
   // Interest system
   interestsSent?: Types.ObjectId[];
   interestsReceived?: Types.ObjectId[];
+
+  // Shortlist/Block Users
+  shortlistedUsers?: Types.ObjectId[];
+  blockedUsers?: Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -41,6 +45,7 @@ const userSchema = new Schema<IUser>(
     email: { type: String, required: true, unique: true },
     phone: { type: String },
     password: { type: String, required: true },
+    createdAt: { type: Date, default: Date.now },
 
     // Role & premium
     role: { type: String, enum: ["user", "admin"], default: "user" },
@@ -70,7 +75,8 @@ const userSchema = new Schema<IUser>(
     // Interests
     interestsSent: [{ type: Schema.Types.ObjectId, ref: "User" }],
     interestsReceived: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    createdAt: { type: Date, default: Date.now },
+    shortlistedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    blockedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   { versionKey: false }
 );
