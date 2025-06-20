@@ -3,9 +3,10 @@ import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import interestRoutes from "./routes/interest.routes.js";
 import matchRoutes from "./routes/match.routes.js";
+import shortlistRoutes from "./routes/shortlist.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import interestRoutes from "./routes/interest.routes.js"
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/match", matchRoutes);
 app.use("/api/interest", interestRoutes);
+app.use("/api/shortlist", shortlistRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Matrimony Connect API is running");
