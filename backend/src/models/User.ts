@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 export interface IUser extends Document {
   name: string;
@@ -29,6 +29,10 @@ export interface IUser extends Document {
     education?: string;
     income?: string;
   };
+
+  // Interest system
+  interestsSent?: Types.ObjectId[];
+  interestsReceived?: Types.ObjectId[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -63,6 +67,9 @@ const userSchema = new Schema<IUser>(
       income: { type: String },
     },
 
+    // Interests
+    interestsSent: [{ type: Schema.Types.ObjectId, ref: "User" }],
+    interestsReceived: [{ type: Schema.Types.ObjectId, ref: "User" }],
     createdAt: { type: Date, default: Date.now },
   },
   { versionKey: false }
