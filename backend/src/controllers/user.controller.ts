@@ -2,6 +2,7 @@ import { Response } from "express";
 import { User } from "../models/User.js";
 import { AuthenticatedRequest } from "../types/express/index.js";
 
+// Get Profile of the authenticated user
 export const getMyProfile = async (
   req: AuthenticatedRequest,
   res: Response
@@ -20,6 +21,7 @@ export const getMyProfile = async (
   }
 };
 
+// Update Profile of the authenticated user
 export const updateMyProfile = async (
   req: AuthenticatedRequest,
   res: Response
