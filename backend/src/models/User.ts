@@ -37,6 +37,10 @@ export interface IUser extends Document {
   // Shortlist/Block Users
   shortlistedUsers?: Types.ObjectId[];
   blockedUsers?: Types.ObjectId[];
+
+  // Additional fields
+  isApproved: boolean;
+  photoStatus: "pending" | "approved" | "rejected";
 }
 
 const userSchema = new Schema<IUser>(
@@ -77,6 +81,14 @@ const userSchema = new Schema<IUser>(
     interestsReceived: [{ type: Schema.Types.ObjectId, ref: "User" }],
     shortlistedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
     blockedUsers: [{ type: Schema.Types.ObjectId, ref: "User" }],
+
+    // ✅ Newly added fields
+    isApproved: { type: Boolean, default: false },
+    photoStatus: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
   },
   { versionKey: false }
 );
