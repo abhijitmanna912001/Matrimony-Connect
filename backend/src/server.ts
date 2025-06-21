@@ -2,6 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./config/db.js";
+import adminRoutes from "./routes/admin.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import blockRoutes from "./routes/block.routes.js";
 import interestRoutes from "./routes/interest.routes.js";
@@ -25,6 +26,7 @@ app.use("/api/interest", interestRoutes);
 app.use("/api/shortlist", shortlistRoutes);
 app.use("/api/block", blockRoutes);
 app.use("/api/subscription", subscriptionRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Matrimony Connect API is running");

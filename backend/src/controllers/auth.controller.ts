@@ -8,7 +8,7 @@ export const registerUser = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { name, email, password, phone } = req.body;
+    const { name, email, password, phone, role = "user" } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -23,6 +23,7 @@ export const registerUser = async (
       email,
       phone,
       password: hashedPassword,
+      role, // Allows creating an admin if provided
     });
 
     res
