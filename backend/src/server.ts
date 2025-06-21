@@ -7,6 +7,7 @@ import blockRoutes from "./routes/block.routes.js";
 import interestRoutes from "./routes/interest.routes.js";
 import matchRoutes from "./routes/match.routes.js";
 import shortlistRoutes from "./routes/shortlist.routes.js";
+import subscriptionRoutes from "./routes/subscription.routes.js";
 import userRoutes from "./routes/user.routes.js";
 
 dotenv.config();
@@ -23,6 +24,7 @@ app.use("/api/match", matchRoutes);
 app.use("/api/interest", interestRoutes);
 app.use("/api/shortlist", shortlistRoutes);
 app.use("/api/block", blockRoutes);
+app.use("/api/subscription", subscriptionRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Matrimony Connect API is running");
