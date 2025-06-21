@@ -60,3 +60,43 @@ export const updatePhotoStatus = async (req: Request, res: Response): Promise<vo
     res.status(500).json({ message: "Failed to update photo status", error });
   }
 };
+
+// ✅ Get Admin Analytics
+export const getAdminAnalytics = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const totalUsers = await User.countDocuments();
+    const totalPremiumUsers = await User.countDocuments({ isPremium: true });
+    const totalApprovedProfiles = await User.countDocuments({
+      isPhotoVerified: true,
+    });
+
+    const users = await User.find();
+
+    const totalInterests = users.reduce(
+      (acc, user) => acc + (user.interestsSent?.length ?? 0),
+      0
+    );
+    const totalShortlisted = users.reduce(
+      (acc, user) => acc + (user.shortlistedUsers?.length ?? 0),
+      0
+    );
+    const totalBlocked = users.reduce(
+      (acc, user) => acc + (user.blockedUsers?.length ?? 0),
+      0
+    );
+
+    res.status(200).json({
+      totalUsers,
+      totalPremiumUsers,
+      totalApprovedProfiles,
+      totalInterests,
+      totalShortlisted,
+      totalBlocked,
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch analytics", error });
+  }
+};
