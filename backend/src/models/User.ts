@@ -41,6 +41,9 @@ export interface IUser extends Document {
   // Additional fields
   isApproved: boolean;
   photoStatus: "pending" | "approved" | "rejected";
+
+  // Reports
+  reports?: { reportedBy: Types.ObjectId; reason: string }[];
 }
 
 const userSchema = new Schema<IUser>(
@@ -89,6 +92,14 @@ const userSchema = new Schema<IUser>(
       enum: ["pending", "approved", "rejected"],
       default: "pending",
     },
+
+    // Reports
+    reports: [
+      {
+        reportedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        reason: { type: String, required: true },
+      },
+    ],
   },
   { versionKey: false }
 );

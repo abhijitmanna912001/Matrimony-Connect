@@ -7,6 +7,7 @@ import { verifyToken } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
+// User routes
 router.get("/me", verifyToken, getMyProfile);
 router.put("/me", verifyToken, updateMyProfile);
 
