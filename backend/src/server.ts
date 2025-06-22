@@ -3,17 +3,18 @@ import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./config/db.js";
 import adminRoutes from "./routes/admin.routes.js";
+import alertRoutes from "./routes/alerts.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import blockRoutes from "./routes/block.routes.js";
 import interestRoutes from "./routes/interest.routes.js";
 import matchRoutes from "./routes/match.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import otpRoutes from "./routes/otp.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
+import reportRoutes from "./routes/report.routes.js";
 import shortlistRoutes from "./routes/shortlist.routes.js";
 import subscriptionRoutes from "./routes/subscription.routes.js";
 import userRoutes from "./routes/user.routes.js";
-import messageRoutes from "./routes/message.routes.js";
-import reportRoutes from "./routes/report.routes.js";
-import alertRoutes from "./routes/alerts.routes.js";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use("/api/payment", paymentRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/alerts", alertRoutes);
+app.use("/api/otp", otpRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Matrimony Connect API is running");
