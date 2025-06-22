@@ -11,6 +11,7 @@ import paymentRoutes from "./routes/payment.routes.js";
 import shortlistRoutes from "./routes/shortlist.routes.js";
 import subscriptionRoutes from "./routes/subscription.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import messageRoutes from "./routes/message.routes.js";
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use("/api/block", blockRoutes);
 app.use("/api/subscription", subscriptionRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/payment", paymentRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.get("/", (_req, res) => {
   res.send("Matrimony Connect API is running");
